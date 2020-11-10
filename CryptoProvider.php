@@ -28,7 +28,8 @@ class CryptoProvider implements ICryptoProvider {
                 // NOTE: the following line produces an error in PHP 7+ related to the offset value. reference
                 // documentation notes that remote files cannot seek, so it seems that since PHP 7.0, `/dev/urandom`
                 // is considered a remote file.
-                return bin2hex(file_get_contents($source, false, null, -1, $length / 2));
+                // TO FIX: Changed -1 offset to 0 - LW
+                return bin2hex(file_get_contents($source, false, null, 0, $length / 2));
             }
         }
 
